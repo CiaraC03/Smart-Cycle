@@ -43,14 +43,14 @@ import numpy as np
 import json
 import csv
 import random
-from imgaug import augmenters as iaa
+import imgaug.augmenters as iaa
 
 from dataset import Taco
 import model as modellib
 from model import MaskRCNN
-from config import Config
+from my_config import my_Config
 import visualize
-from detector import utils
+import utils
 import matplotlib.pyplot as plt
 
 from pycocotools.cocoeval import COCOeval
@@ -246,7 +246,7 @@ if __name__ == '__main__':
 
     # Configurations
     if args.command == "train":
-        class TacoTrainConfig(Config):
+        class TacoTrainConfig(my_Config):
             NAME = "taco"
             IMAGES_PER_GPU = 2
             GPU_COUNT = 1
@@ -257,7 +257,7 @@ if __name__ == '__main__':
             LEARNING_RATE = args.lrate
         config = TacoTrainConfig()
     else:
-        class TacoTestConfig(Config):
+        class TacoTestConfig(my_Config):
             NAME = "taco"
             GPU_COUNT = 1
             IMAGES_PER_GPU = 1
